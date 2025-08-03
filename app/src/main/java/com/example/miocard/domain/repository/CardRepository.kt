@@ -10,5 +10,5 @@ interface CardRepository {
     suspend fun updateCard(card: Card)
     suspend fun deleteCard(card: Card)
     suspend fun getCardById(id: String): Card?
-    suspend fun getCardBalance(cardId: String): Result<CardBalance>
+    suspend fun getCardBalance(card: Card): Result<CardBalance>
 }

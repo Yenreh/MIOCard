@@ -41,9 +41,10 @@ class CardRepositoryImpl @Inject constructor(
         return cardDao.getCardById(id)?.toDomain()
     }
 
-    override suspend fun getCardBalance(cardId: String): Result<CardBalance> {
+    override suspend fun getCardBalance(card: Card): Result<CardBalance> {
         return try {
-            val response = cardApiService.getCardBalance(cardId)
+            val cardParam = card.prefix + card.id + card.suffix
+            val response = cardApiService.getCardBalance(cardParam)
             if (response.isSuccessful && response.body() != null) {
                 Result.success(response.body()!!.toDomain())
             } else {

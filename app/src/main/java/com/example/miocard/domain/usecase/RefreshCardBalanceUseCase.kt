@@ -10,15 +10,13 @@ class RefreshCardBalanceUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(cardId: String): Result<Card> {
         return try {
-            val cardBalance = cardRepository.getCardBalance(cardId).getOrThrow()
             val existingCard = cardRepository.getCardById(cardId)
                 ?: return Result.failure(Exception("Card not found"))
-            
+            val cardBalance = cardRepository.getCardBalance(existingCard).getOrThrow()
             val updatedCard = existingCard.copy(
                 balance = cardBalance.balance,
                 lastUpdate = cardBalance.balanceDate
             )
-            
             cardRepository.updateCard(updatedCard)
             Result.success(updatedCard)
         } catch (e: Exception) {
