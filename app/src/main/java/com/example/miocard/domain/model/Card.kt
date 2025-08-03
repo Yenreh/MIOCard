@@ -3,6 +3,7 @@ package com.example.miocard.domain.model
 import java.util.Date
 
 data class Card(
+    val internalId: String = java.util.UUID.randomUUID().toString(),
     val id: String,
     val prefix: String = "",
     val suffix: String = "",

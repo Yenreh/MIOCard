@@ -76,13 +76,19 @@ fun EditCardScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 
-                // Card ID field (read-only)
+                // Card ID field (editable)
                 OutlinedTextField(
                     value = uiState.id,
-                    onValueChange = { }, // Read-only
+                    onValueChange = viewModel::updateId,
                     label = { Text(stringResource(R.string.card_id_label)) },
-                    enabled = false,
-                    modifier = Modifier.fillMaxWidth()
+                    placeholder = { Text(stringResource(R.string.card_id_placeholder)) },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    modifier = Modifier.fillMaxWidth(),
+                    isError = uiState.idError != null,
+                    supportingText = uiState.idError?.let { { Text(it) } }
                 )
                 
                 // Prefix field (optional)

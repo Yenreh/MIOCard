@@ -6,6 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CardApiService {
-    @GET("cards/{cardId}/balance")
-    suspend fun getCardBalance(@Path("cardId") cardId: String): Response<CardBalanceResponse>
+    @GET("https://www.utryt.com.co/saldo/script/saldo.php")
+    suspend fun getCardBalance(
+        @retrofit2.http.Query("card") card: String
+    ): Response<CardBalanceResponse>
 }

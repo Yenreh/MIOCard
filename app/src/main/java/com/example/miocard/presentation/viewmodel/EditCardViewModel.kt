@@ -20,6 +20,7 @@ data class EditCardUiState(
     val error: String? = null,
     val isCardUpdated: Boolean = false,
     val nameError: String? = null,
+    val idError: String? = null,
     val originalCard: Card? = null
 )
 
@@ -69,6 +70,10 @@ class EditCardViewModel @Inject constructor(
         }
     }
 
+    fun updateId(id: String) {
+        _uiState.value = _uiState.value.copy(id = id, idError = null)
+    }
+
     fun updatePrefix(prefix: String) {
         _uiState.value = _uiState.value.copy(prefix = prefix)
     }
@@ -88,6 +93,10 @@ class EditCardViewModel @Inject constructor(
         val currentState = _uiState.value
         
         // Validation
+        if (currentState.id.isBlank()) {
+            _uiState.value = currentState.copy(idError = "Card ID is required")
+            return
+        }
         if (currentState.name.isBlank()) {
             _uiState.value = currentState.copy(nameError = "Name is required")
             return
@@ -96,6 +105,7 @@ class EditCardViewModel @Inject constructor(
         val originalCard = currentState.originalCard ?: return
         
         val updatedCard = originalCard.copy(
+            id = currentState.id.trim(),
             prefix = currentState.prefix.trim(),
             suffix = currentState.suffix.trim(),
             name = currentState.name.trim()

@@ -7,7 +7,8 @@ import java.util.Date
 
 @Entity(tableName = "cards")
 data class CardEntity(
-    @PrimaryKey val id: String,
+    @PrimaryKey val internalId: String = java.util.UUID.randomUUID().toString(),
+    val id: String,
     val prefix: String,
     val suffix: String,
     val name: String,
@@ -17,6 +18,7 @@ data class CardEntity(
 
 fun CardEntity.toDomain(): Card {
     return Card(
+        internalId = internalId,
         id = id,
         prefix = prefix,
         suffix = suffix,
@@ -28,6 +30,7 @@ fun CardEntity.toDomain(): Card {
 
 fun Card.toEntity(): CardEntity {
     return CardEntity(
+        internalId = internalId,
         id = id,
         prefix = prefix,
         suffix = suffix,
