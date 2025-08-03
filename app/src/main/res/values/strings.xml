@@ -33,4 +33,16 @@
     <string name="error_network">Network error. Check your internet connection.</string>
     <string name="error_unknown">An unknown error occurred</string>
     <string name="error_api">Server error. Please try again later.</string>
+    
+    <!-- Edit/Delete functionality -->
+    <string name="edit_card">Edit card</string>
+    <string name="delete_card">Delete card</string>
+    <string name="edit_card_title">Edit Card</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="saving_card">Saving...</string>
+    <string name="delete_card_title">Delete Card</string>
+    <string name="delete_card_message">Are you sure you want to delete "%1$s"? This action cannot be undone.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="deleting_card">Deleting...</string>
 </resources>
