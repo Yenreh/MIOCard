@@ -134,11 +134,19 @@ fun CardItem(
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                    val balance = card.balance
+                    val balanceColor = when {
+                        balance == null -> MaterialTheme.colorScheme.onSurface
+                        balance > 0 -> MaterialTheme.colorScheme.primary
+                        balance < 0 -> MaterialTheme.colorScheme.error
+                        else -> MaterialTheme.colorScheme.onSurface
+                    }
                     Text(
-                        text = card.balance?.let { "$${"%.2f".format(it)}" } 
+                        text = balance?.let { "$${"%.2f".format(it)}" }
                             ?: stringResource(R.string.balance_unknown),
                         style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        color = balanceColor
                     )
                 }
                 
