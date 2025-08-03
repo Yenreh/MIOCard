@@ -5,6 +5,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,27 +38,57 @@ fun CardItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
+                .defaultMinSize(minHeight = 120.dp) // Make cards taller
         ) {
-            // Card name and ID
+            // Card name, ID and refresh button row
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = card.name,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = card.displayId,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Column {
+                            Text(
+                                text = card.name,
+                                style = MaterialTheme.typography.headlineSmall,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = card.displayId,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        
+                        // Refresh button next to name
+                        IconButton(
+                            onClick = onRefreshClick,
+                            enabled = !isRefreshing,
+                            modifier = Modifier.size(40.dp) // Larger than edit/delete buttons
+                        ) {
+                            if (isRefreshing) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(20.dp),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    strokeWidth = 2.dp
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = Icons.Default.Refresh,
+                                    contentDescription = stringResource(R.string.refresh),
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(22.dp) // Larger icon
+                                )
+                            }
+                        }
+                    }
                 }
                 
-                // Action buttons row
+                // Edit and Delete buttons in top-right corner
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically
@@ -86,27 +117,6 @@ fun CardItem(
                             tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(18.dp)
                         )
-                    }
-                    
-                    // Refresh button
-                    Button(
-                        onClick = onRefreshClick,
-                        enabled = !isRefreshing,
-                        modifier = Modifier.size(height = 36.dp, width = 80.dp),
-                        contentPadding = PaddingValues(4.dp)
-                    ) {
-                        if (isRefreshing) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(16.dp),
-                                color = MaterialTheme.colorScheme.onPrimary,
-                                strokeWidth = 2.dp
-                            )
-                        } else {
-                            Text(
-                                text = stringResource(R.string.refresh),
-                                style = MaterialTheme.typography.labelSmall
-                            )
-                        }
                     }
                 }
             }
