@@ -12,7 +12,7 @@ import javax.inject.Inject
 data class CreateCardUiState(
     val id: String = "",
     val prefix: String = "1906",
-    val suffix: String = "01",
+    val suffix: String = "1",
     val name: String = "",
     val isLoading: Boolean = false,
     val error: String? = null,
