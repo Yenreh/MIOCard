@@ -2,14 +2,15 @@
 buildscript {
     ext {
         compose_bom_version = '2023.10.01'
-        agp_version = '7.4.2'
-        kotlin_version = '1.8.10'
-        hilt_version = '2.46'
+        agp_version = '7.3.1'
+        kotlin_version = '1.7.20'
+        hilt_version = '2.44'
     }
     repositories {
         google()
         mavenCentral()
         maven { url 'https://repo1.maven.org/maven2' }
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
