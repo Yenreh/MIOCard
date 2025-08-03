@@ -141,9 +141,13 @@ fun CardItem(
                         balance < 0 -> MaterialTheme.colorScheme.error
                         else -> MaterialTheme.colorScheme.onSurface
                     }
+                    val balanceText = when {
+                        balance == null -> stringResource(R.string.balance_unknown)
+                        balance < 0 -> "-$${"%.2f".format(kotlin.math.abs(balance))}"
+                        else -> "$${"%.2f".format(balance)}"
+                    }
                     Text(
-                        text = balance?.let { "$${"%.2f".format(it)}" }
-                            ?: stringResource(R.string.balance_unknown),
+                        text = balanceText,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Medium,
                         color = balanceColor
