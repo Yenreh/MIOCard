@@ -21,6 +21,7 @@ import com.example.miocard.presentation.viewmodel.MainViewModel
 @Composable
 fun MainScreen(
     onNavigateToCreateCard: () -> Unit,
+    onNavigateToEditCard: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: MainViewModel = hiltViewModel()
 ) {
@@ -102,10 +103,59 @@ fun MainScreen(
                         isRefreshing = uiState.refreshingCardId == card.id,
                         onRefreshClick = {
                             viewModel.refreshCardBalance(card.id)
+                        },
+                        onEditClick = {
+                            onNavigateToEditCard(card.id)
+                        },
+                        onDeleteClick = {
+                            viewModel.showDeleteDialog(card)
                         }
                     )
                 }
             }
+        }
+    }
+    
+    // Delete confirmation dialog
+    if (uiState.showDeleteDialog) {
+        uiState.cardToDelete?.let { card ->
+            AlertDialog(
+                onDismissRequest = viewModel::hideDeleteDialog,
+                title = { Text(stringResource(R.string.delete_card_title)) },
+                text = { 
+                    Text(stringResource(R.string.delete_card_message, card.name))
+                },
+                confirmButton = {
+                    Button(
+                        onClick = viewModel::deleteCard,
+                        enabled = !uiState.isDeletingCard,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.error
+                        )
+                    ) {
+                        if (uiState.isDeletingCard) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(16.dp),
+                                color = MaterialTheme.colorScheme.onError,
+                                strokeWidth = 2.dp
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                        }
+                        Text(
+                            if (uiState.isDeletingCard) stringResource(R.string.deleting_card)
+                            else stringResource(R.string.delete)
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(
+                        onClick = viewModel::hideDeleteDialog,
+                        enabled = !uiState.isDeletingCard
+                    ) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                }
+            )
         }
     }
 }
