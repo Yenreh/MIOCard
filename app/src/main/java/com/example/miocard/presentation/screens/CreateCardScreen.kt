@@ -67,7 +67,7 @@ fun CreateCardScreen(
                 isError = uiState.idError != null,
                 supportingText = uiState.idError?.let { { Text(it) } },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
+                    keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()
@@ -80,7 +80,7 @@ fun CreateCardScreen(
                 label = { Text(stringResource(R.string.card_prefix_label)) },
                 placeholder = { Text(stringResource(R.string.card_prefix_placeholder)) },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
+                    keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()
@@ -93,7 +93,7 @@ fun CreateCardScreen(
                 label = { Text(stringResource(R.string.card_suffix_label)) },
                 placeholder = { Text(stringResource(R.string.card_suffix_placeholder)) },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
+                    keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()

@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 data class CreateCardUiState(
     val id: String = "",
-    val prefix: String = "",
-    val suffix: String = "",
+    val prefix: String = "1906",
+    val suffix: String = "01",
     val name: String = "",
     val isLoading: Boolean = false,
     val error: String? = null,
@@ -30,18 +30,24 @@ class CreateCardViewModel @Inject constructor(
     val uiState: StateFlow<CreateCardUiState> = _uiState.asStateFlow()
 
     fun updateId(id: String) {
-        _uiState.value = _uiState.value.copy(
-            id = id,
-            idError = null
-        )
+        if (id.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(
+                id = id,
+                idError = null
+            )
+        }
     }
 
     fun updatePrefix(prefix: String) {
-        _uiState.value = _uiState.value.copy(prefix = prefix)
+        if (prefix.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(prefix = prefix)
+        }
     }
 
     fun updateSuffix(suffix: String) {
-        _uiState.value = _uiState.value.copy(suffix = suffix)
+        if (suffix.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(suffix = suffix)
+        }
     }
 
     fun updateName(name: String) {

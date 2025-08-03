@@ -83,7 +83,7 @@ fun EditCardScreen(
                     label = { Text(stringResource(R.string.card_id_label)) },
                     placeholder = { Text(stringResource(R.string.card_id_placeholder)) },
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     modifier = Modifier.fillMaxWidth(),
@@ -98,7 +98,7 @@ fun EditCardScreen(
                     label = { Text(stringResource(R.string.card_prefix_label)) },
                     placeholder = { Text(stringResource(R.string.card_prefix_placeholder)) },
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     modifier = Modifier.fillMaxWidth()
@@ -111,7 +111,7 @@ fun EditCardScreen(
                     label = { Text(stringResource(R.string.card_suffix_label)) },
                     placeholder = { Text(stringResource(R.string.card_suffix_placeholder)) },
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     modifier = Modifier.fillMaxWidth()

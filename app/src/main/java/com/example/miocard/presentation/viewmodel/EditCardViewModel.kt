@@ -71,15 +71,21 @@ class EditCardViewModel @Inject constructor(
     }
 
     fun updateId(id: String) {
-        _uiState.value = _uiState.value.copy(id = id, idError = null)
+        if (id.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(id = id, idError = null)
+        }
     }
 
     fun updatePrefix(prefix: String) {
-        _uiState.value = _uiState.value.copy(prefix = prefix)
+        if (prefix.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(prefix = prefix)
+        }
     }
 
     fun updateSuffix(suffix: String) {
-        _uiState.value = _uiState.value.copy(suffix = suffix)
+        if (suffix.all { it.isDigit() }) {
+            _uiState.value = _uiState.value.copy(suffix = suffix)
+        }
     }
 
     fun updateName(name: String) {
