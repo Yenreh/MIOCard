@@ -22,6 +22,8 @@
     <string name="card_suffix_placeholder">Sufijo opcional</string>
     <string name="card_name_label">Nombre *</string>
     <string name="card_name_placeholder">Nombre de la tarjeta</string>
+    <string name="card_position_label">Posición</string>
+    <string name="card_position_placeholder">Posición de visualización</string>
     <string name="create_card_button">Crear Tarjeta</string>
     <string name="creating_card">Creando...</string>
     

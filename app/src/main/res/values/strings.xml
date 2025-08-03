@@ -22,6 +22,8 @@
     <string name="card_suffix_placeholder">Optional suffix</string>
     <string name="card_name_label">Name *</string>
     <string name="card_name_placeholder">Card name</string>
+    <string name="card_position_label">Position</string>
+    <string name="card_position_placeholder">Display position</string>
     <string name="create_card_button">Create Card</string>
     <string name="creating_card">Creating...</string>
     

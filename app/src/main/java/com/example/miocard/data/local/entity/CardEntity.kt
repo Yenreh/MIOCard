@@ -12,6 +12,7 @@ data class CardEntity(
     val prefix: String,
     val suffix: String,
     val name: String,
+    val position: Int,
     val balance: Double?,
     val lastUpdate: Date?
 )
@@ -23,6 +24,7 @@ fun CardEntity.toDomain(): Card {
         prefix = prefix,
         suffix = suffix,
         name = name,
+        position = position,
         balance = balance,
         lastUpdate = lastUpdate
     )
@@ -35,6 +37,7 @@ fun Card.toEntity(): CardEntity {
         prefix = prefix,
         suffix = suffix,
         name = name,
+        position = position,
         balance = balance,
         lastUpdate = lastUpdate
     )

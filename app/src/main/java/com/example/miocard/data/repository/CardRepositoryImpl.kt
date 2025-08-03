@@ -54,4 +54,13 @@ class CardRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
+    override suspend fun getNextPosition(): Int {
+        val maxPosition = cardDao.getMaxPosition()
+        return (maxPosition ?: 0) + 1
+    }
+
+    override suspend fun getCardByPosition(position: Int): Card? {
+        return cardDao.getCardByPosition(position)?.toDomain()
+    }
 }

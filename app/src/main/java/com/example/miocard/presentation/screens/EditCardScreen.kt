@@ -127,8 +127,25 @@ fun EditCardScreen(
                     supportingText = uiState.nameError?.let { { Text(it) } },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
+                
+                // Position field
+                OutlinedTextField(
+                    value = uiState.position.toString(),
+                    onValueChange = { value ->
+                        value.toIntOrNull()?.let { viewModel.updatePosition(it) }
+                    },
+                    label = { Text(stringResource(R.string.card_position_label)) },
+                    placeholder = { Text(stringResource(R.string.card_position_placeholder)) },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     ),
+                    isError = uiState.positionError != null,
+                    supportingText = uiState.positionError?.let { { Text(it) } },
                     modifier = Modifier.fillMaxWidth()
                 )
                 

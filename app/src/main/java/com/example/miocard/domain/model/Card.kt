@@ -8,6 +8,7 @@ data class Card(
     val prefix: String = "",
     val suffix: String = "",
     val name: String,
+    val position: Int = 0,
     val balance: Double? = null,
     val lastUpdate: Date? = null
 ) {

@@ -16,11 +16,13 @@ data class EditCardUiState(
     val prefix: String = "",
     val suffix: String = "",
     val name: String = "",
+    val position: Int = 1,
     val isLoading: Boolean = false,
     val error: String? = null,
     val isCardUpdated: Boolean = false,
     val nameError: String? = null,
     val idError: String? = null,
+    val positionError: String? = null,
     val originalCard: Card? = null
 )
 
@@ -52,6 +54,7 @@ class EditCardViewModel @Inject constructor(
                         prefix = card.prefix,
                         suffix = card.suffix,
                         name = card.name,
+                        position = card.position,
                         originalCard = card,
                         isLoading = false
                     )
@@ -95,6 +98,13 @@ class EditCardViewModel @Inject constructor(
         )
     }
 
+    fun updatePosition(position: Int) {
+        _uiState.value = _uiState.value.copy(
+            position = position,
+            positionError = null
+        )
+    }
+
     fun saveCard() {
         val currentState = _uiState.value
         
@@ -107,6 +117,10 @@ class EditCardViewModel @Inject constructor(
             _uiState.value = currentState.copy(nameError = "Name is required")
             return
         }
+        if (currentState.position < 1) {
+            _uiState.value = currentState.copy(positionError = "Position must be greater than 0")
+            return
+        }
 
         val originalCard = currentState.originalCard ?: return
         
@@ -114,13 +128,24 @@ class EditCardViewModel @Inject constructor(
             id = currentState.id.trim(),
             prefix = currentState.prefix.trim(),
             suffix = currentState.suffix.trim(),
-            name = currentState.name.trim()
+            name = currentState.name.trim(),
+            position = currentState.position
         )
 
         viewModelScope.launch {
             _uiState.value = currentState.copy(isLoading = true, error = null)
             
             try {
+                // Check if position changed and handle swapping
+                if (originalCard.position != currentState.position) {
+                    val existingCardAtPosition = cardRepository.getCardByPosition(currentState.position)
+                    if (existingCardAtPosition != null) {
+                        // Swap positions
+                        val swapCard = existingCardAtPosition.copy(position = originalCard.position)
+                        cardRepository.updateCard(swapCard)
+                    }
+                }
+                
                 updateCardUseCase(updatedCard)
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,

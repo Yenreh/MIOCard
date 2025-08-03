@@ -8,6 +8,8 @@ class CreateCardUseCase @Inject constructor(
     private val cardRepository: CardRepository
 ) {
     suspend operator fun invoke(card: Card) {
-        cardRepository.insertCard(card)
+        val nextPosition = cardRepository.getNextPosition()
+        val cardWithPosition = card.copy(position = nextPosition)
+        cardRepository.insertCard(cardWithPosition)
     }
 }
