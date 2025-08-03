@@ -6,11 +6,17 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
-    @Query("SELECT * FROM cards ORDER BY name ASC")
+    @Query("SELECT * FROM cards ORDER BY position ASC")
     fun getAllCards(): Flow<List<CardEntity>>
 
     @Query("SELECT * FROM cards WHERE id = :id")
     suspend fun getCardById(id: String): CardEntity?
+
+    @Query("SELECT MAX(position) FROM cards")
+    suspend fun getMaxPosition(): Int?
+
+    @Query("SELECT * FROM cards WHERE position = :position")
+    suspend fun getCardByPosition(position: Int): CardEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCard(card: CardEntity)
