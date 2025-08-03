@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">MIOCard</string>
+    
+    <!-- Main Screen -->
+    <string name="add_card">Add card</string>
+    <string name="no_cards_message">You don\'t have any saved cards.\nAdd your first card to get started.</string>
+    <string name="create_first_card">Create first card</string>
+    <string name="refresh">Refresh</string>
+    <string name="balance">Balance</string>
+    <string name="balance_unknown">Unknown</string>
+    <string name="last_update">Last update</string>
+    <string name="never_updated">Never updated</string>
+    
+    <!-- Create Card Screen -->
+    <string name="create_card_title">Create New Card</string>
+    <string name="back">Back</string>
+    <string name="card_id_label">Card ID *</string>
+    <string name="card_id_placeholder">Enter card ID</string>
+    <string name="card_prefix_label">Prefix</string>
+    <string name="card_prefix_placeholder">Optional prefix</string>
+    <string name="card_suffix_label">Suffix</string>
+    <string name="card_suffix_placeholder">Optional suffix</string>
+    <string name="card_name_label">Name *</string>
+    <string name="card_name_placeholder">Card name</string>
+    <string name="create_card_button">Create Card</string>
+    <string name="creating_card">Creating...</string>
+    
+    <!-- Validation messages -->
+    <string name="id_required">ID is required</string>
+    <string name="name_required">Name is required</string>
+    
+    <!-- Error messages -->
+    <string name="error_network">Network error. Check your internet connection.</string>
+    <string name="error_unknown">An unknown error occurred</string>
+    <string name="error_api">Server error. Please try again later.</string>
 </resources>

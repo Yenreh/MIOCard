@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MIOCard</string>
+    
+    <!-- Main Screen -->
+    <string name="add_card">Agregar tarjeta</string>
+    <string name="no_cards_message">No tienes tarjetas guardadas.\nAgrega tu primera tarjeta para comenzar.</string>
+    <string name="create_first_card">Crear primera tarjeta</string>
+    <string name="refresh">Actualizar</string>
+    <string name="balance">Saldo</string>
+    <string name="balance_unknown">Desconocido</string>
+    <string name="last_update">Última actualización</string>
+    <string name="never_updated">Nunca actualizado</string>
+    
+    <!-- Create Card Screen -->
+    <string name="create_card_title">Crear Nueva Tarjeta</string>
+    <string name="back">Atrás</string>
+    <string name="card_id_label">ID de Tarjeta *</string>
+    <string name="card_id_placeholder">Ingresa el ID de la tarjeta</string>
+    <string name="card_prefix_label">Prefijo</string>
+    <string name="card_prefix_placeholder">Prefijo opcional</string>
+    <string name="card_suffix_label">Sufijo</string>
+    <string name="card_suffix_placeholder">Sufijo opcional</string>
+    <string name="card_name_label">Nombre *</string>
+    <string name="card_name_placeholder">Nombre de la tarjeta</string>
+    <string name="create_card_button">Crear Tarjeta</string>
+    <string name="creating_card">Creando...</string>
+    
+    <!-- Validation messages -->
+    <string name="id_required">El ID es obligatorio</string>
+    <string name="name_required">El nombre es obligatorio</string>
+    
+    <!-- Error messages -->
+    <string name="error_network">Error de conexión. Verifica tu internet.</string>
+    <string name="error_unknown">Ha ocurrido un error desconocido</string>
+    <string name="error_api">Error del servidor. Inténtalo más tarde.</string>
+</resources>
